@@ -27,5 +27,14 @@ namespace customerapi.Controllers
             var result = _repository.GetCustomers();
             return Ok(result);
         }
+
+        [HttpGet("Test")]
+        public ActionResult<IEnumerable<Customer>> GetCustomersWithStress()
+        {
+            var result = _repository.GetCustomers();
+            CpuStress.GenerateStress();
+            return Ok(result);
+        }
     }
+
 }
